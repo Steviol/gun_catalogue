@@ -77,13 +77,16 @@ AddEventHandler("gunCatalogue:Purchase", function(data,code1)
 					if cash >= weapon2['PRICE'] then
 						local ItemData = Framework.getItem(_source, data.weapon)
 						ItemData.AddItem(1)
-						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
+						--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
+						TriggerClientEvent("redemrp_notification:start", _source, "Buy: "..weapon2['label'], 3, "success")
 						user.removeMoney(weapon2['PRICE'])
 					else
-						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'You do not have enough money to buy this weapon'})
+						--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'You do not have enough money to buy this weapon'})
+						TriggerClientEvent("redemrp_notification:start", _source, "You do not have enough money to buy this weapon", 3, "error")
 					end
 				else
-					TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'Your trying to buy a weapon that doesnt exist'})
+					--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'Your trying to buy a weapon that doesnt exist'})
+					TriggerClientEvent("redemrp_notification:start", _source, "Your trying to buy a weapon that doesnt exist", 3, "error")
 				end
 			else
 				local weapon2 = weapon2(data.weapon)
@@ -91,13 +94,16 @@ AddEventHandler("gunCatalogue:Purchase", function(data,code1)
 					if cash >= weapon2['AMMOPRICE'] then
 						local ItemData2 = Framework.getItem(_source, data.weapon)
 						ItemData2.AddItem(1)
-						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
+						--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
+						TriggerClientEvent("redemrp_notification:start", _source, "Received: "..weapon2['label'], 3, "success")
 						user.removeMoney(weapon2['AMMOPRICE'])
 					else
-						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'You do not have enough money to buy ammo'})
+						--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'You do not have enough money to buy ammo'})
+						TriggerClientEvent("redemrp_notification:start", _source, "You do not have enough money to buy ammo", 3, "error")
 					end
 				else
-					TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'Your trying to buy ammo that doesnt exist'})
+					--TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'error', text = 'Your trying to buy ammo that doesnt exist'})
+					TriggerClientEvent("redemrp_notification:start", _source, "Your trying to buy ammo that doesnt exist", 3, "error")
 				end
 			end
 		end)
