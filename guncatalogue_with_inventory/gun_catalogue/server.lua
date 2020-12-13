@@ -75,7 +75,7 @@ AddEventHandler("gunCatalogue:Purchase", function(data,code1)
 				local weapon2 = weapon2(data.weapon)
 				if weapon2 then
 					if cash >= weapon2['PRICE'] then
-						local ItemData = Framework.getItem(_source, GetHashKey(data.weapon))
+						local ItemData = Framework.getItem(_source, data.weapon)
 						ItemData.AddItem(1)
 						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
 						user.removeMoney(weapon2['PRICE'])
@@ -89,8 +89,8 @@ AddEventHandler("gunCatalogue:Purchase", function(data,code1)
 				local weapon2 = weapon2(data.weapon)
 				if weapon2 then
 					if cash >= weapon2['AMMOPRICE'] then
-						local ItemData = Framework.getItem(_source, data.weapon)
-						ItemData.AddItem(1)
+						local ItemData2 = Framework.getItem(_source, data.weapon)
+						ItemData2.AddItem(1)
 						TriggerClientEvent('mythic_notify:client:SendAlert:long', _source, { type = 'success', text = 'Received '..weapon2['label']})
 						user.removeMoney(weapon2['AMMOPRICE'])
 					else
@@ -137,7 +137,7 @@ RegisterServerEvent("RegisterUsableItem:rifle_ammo")
 AddEventHandler("RegisterUsableItem:rifle_ammo", function(source)
 	local _source = source
 	TriggerClientEvent('gunCatalogue:giveammo', _source, "WEAPON_RIFLE_BOLTACTION",code)
-	local ItemData = Framework.getItem(_source, '22_ammo', 1)
+	local ItemData = Framework.getItem(_source, 'rifle_ammo', 1)
 	ItemData.RemoveItem(1)
 end)
 -------- Shotgun Shells
